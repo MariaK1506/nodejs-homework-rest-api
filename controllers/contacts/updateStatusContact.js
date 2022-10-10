@@ -1,11 +1,16 @@
 const { RequestError } = require("../../middlewares");
 const { Contact } = require("../../models");
 
-const update = async (req, res) => {
+const updateStatusContact = async (req, res) => {
   const { contactId } = req.params;
-  const result = await Contact.findByIdAndUpdate(contactId, req.body, {
-    new: true,
-  });
+  const { favorite } = req.body;
+
+  const result = await Contact.findByIdAndUpdate(
+    contactId,
+    { favorite },
+    { new: true }
+  );
+
   if (!result) {
     throw RequestError(404, "Contact not found");
   }
@@ -18,4 +23,4 @@ const update = async (req, res) => {
   });
 };
 
-module.exports = update;
+module.exports = updateStatusContact;
