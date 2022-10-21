@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const userSchema = Schema(
   {
@@ -17,6 +17,10 @@ const userSchema = Schema(
       type: String,
       enum: ["starter", "pro", "business"],
       default: "starter",
+    },
+    avatarURL: {
+      type: String,
+      required: true,
     },
     token: {
       type: String,
